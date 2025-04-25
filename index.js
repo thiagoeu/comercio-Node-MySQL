@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 
 import produtoRouter from "./routes/produto.route.js";
+import userRouter from "./routes/user.route.js";
+
 import sequelize from "./config/dbConfig.js";
 
 const app = express();
@@ -24,3 +26,4 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/produtos", produtoRouter);
+app.use("/api/usuarios", userRouter);
