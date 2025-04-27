@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/database.js"; // ajuste o caminho para sua conexão
+import sequelize from "../config/dbConfig.js";
 
-const UserShema = sequelize.define(
+const UserSchema = sequelize.define(
   "User",
   {
     name: {
@@ -56,4 +56,4 @@ const UserShema = sequelize.define(
   }
 );
 
-export default UserShema;
+export default UserSchema;
