@@ -1,4 +1,5 @@
-import Produto from "../models/produto.model.js";
+import { mergeDefaults } from "sequelize/lib/utils";
+import ProdutoSchema from "../models/produto.model.js";
 
 export const createProdutoController = async (req, res) => {
   try {
@@ -20,13 +21,15 @@ export const createProdutoController = async (req, res) => {
       !product_stock ||
       !product_code
     ) {
-      return res
-        .status(400)
-        .json({ error: "Todos os campos são obrigatórios" });
+      return res.status(400).json({
+        message: "Todos os campos são obrigatórios",
+        error: true,
+        success: false,
+      });
     }
 
     // Verificar se o produto já existe
-    const existingProduct = await Produto.findOne({
+    const existingProduct = await ProdutoSchema.findOne({
       where: { product_code },
     });
 
@@ -38,7 +41,7 @@ export const createProdutoController = async (req, res) => {
       });
     }
 
-    const produto = await Produto.create({
+    const produto = await ProdutoSchema.create({
       name,
       product_code,
       price,
@@ -74,7 +77,7 @@ export const deleteProdutoController = async (req, res) => {
       });
     }
 
-    const produto = await Produto.findOne({ where: { product_code } });
+    const produto = await ProdutoSchema.findOne({ where: { product_code } });
 
     if (!produto) {
       return res.status(404).json({ message: "Produto não encontrado" });

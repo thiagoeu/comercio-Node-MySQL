@@ -1,50 +1,59 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../config/dbConfig.js";
+import sequelize from "../config/database.js"; // ajuste o caminho para sua conexão
 
-const userShema = sequelize.define(
+const UserShema = sequelize.define(
   "User",
   {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
     name: {
-      type: DataTypes.STRING(255),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     email: {
-      type: DataTypes.STRING(50),
+      type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     password: {
-      type: DataTypes.DECIMAL(10, 2),
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
-      type: DataTypes.STRING(1000),
-      allowNull: false,
+    avatar: {
+      type: DataTypes.STRING,
+      defaultValue: "",
     },
-    category: {
-      type: DataTypes.STRING(100),
+    phone: {
+      type: DataTypes.BIGINT, // Pode ser BIGINT para números grandes como telefone
+      allowNull: true,
     },
-    product_stock: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+    refresh_token: {
+      type: DataTypes.STRING,
+      defaultValue: "",
     },
-    requires_prescription: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
+    last_login_date: {
+      type: DataTypes.DATE,
+      allowNull: true,
     },
-    prescription_file: {
+    status: {
+      type: DataTypes.ENUM("Active", "Inactive", "Banned"),
+      defaultValue: "Active",
+    },
+    forgot_password_otp: {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    forgot_password_otp_expiry: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    role: {
+      type: DataTypes.ENUM("ADMIN", "USER"),
+      defaultValue: "USER",
+    },
   },
   {
-    timestamps: true,
+    timestamps: true, // createdAt e updatedAt
+    tableName: "users", // Nome da tabela no MySQL
   }
 );
 
-export default userShema;
+export default UserShema;
