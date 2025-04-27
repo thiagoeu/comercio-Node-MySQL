@@ -40,7 +40,8 @@ export async function createProdutoController(req, res) {
       });
     }
 
-    const produto = await ProdutoSchema.create({
+    // cria produto
+    const payload = {
       name,
       product_code,
       price,
@@ -48,7 +49,8 @@ export async function createProdutoController(req, res) {
       category,
       product_stock,
       requires_prescription,
-    });
+    };
+    produto = await ProdutoSchema.create(payload);
 
     res.json({
       message: "Produto cadastrado com sucesso!",
