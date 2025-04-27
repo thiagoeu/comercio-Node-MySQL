@@ -15,8 +15,6 @@ const sequelize = new Sequelize(
   }
 );
 
-sequelize.sync({ alter: true });
-
 // Testar conexão
 (async () => {
   try {

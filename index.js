@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 // Conectar ao banco de dados e iniciar o servidor
-sequelize.sync().then(() => {
+sequelize.sync({ alter: true }).then(() => {
   app.listen(3000, () => {
     console.log("Server running on port 3000");
   });
