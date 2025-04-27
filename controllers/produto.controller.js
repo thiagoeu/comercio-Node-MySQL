@@ -1,7 +1,6 @@
-import { mergeDefaults } from "sequelize/lib/utils";
 import ProdutoSchema from "../models/produto.model.js";
 
-export const createProdutoController = async (req, res) => {
+export async function createProdutoController(req, res) {
   try {
     const {
       name,
@@ -64,9 +63,9 @@ export const createProdutoController = async (req, res) => {
       success: false,
     });
   }
-};
+}
 
-export const deleteProdutoController = async (req, res) => {
+export async function deleteProdutoController(req, res) {
   try {
     const { product_code } = req.params;
     if (!product_code) {
@@ -90,4 +89,4 @@ export const deleteProdutoController = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: error.message || error });
   }
-};
+}
