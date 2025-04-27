@@ -1,9 +1,11 @@
 import express from "express";
 import cors from "cors";
 
+// rotas
 import produtoRouter from "./routes/produto.route.js";
 import userRouter from "./routes/user.route.js";
 
+// Configuracoes
 import sequelize from "./config/dbConfig.js";
 
 const app = express();
