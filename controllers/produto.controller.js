@@ -50,7 +50,7 @@ export async function createProdutoController(req, res) {
       product_stock,
       requires_prescription,
     };
-    produto = await ProdutoSchema.create(payload);
+    const produto = await ProdutoSchema.create(payload);
 
     res.json({
       message: "Produto cadastrado com sucesso!",

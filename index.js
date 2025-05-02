@@ -8,6 +8,10 @@ import userRouter from "./routes/user.route.js";
 // Configuracoes
 import sequelize from "./config/dbConfig.js";
 
+//swagger
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./swagger_output.json" assert { type: "json" };
+
 const app = express();
 
 app.use(cors());
@@ -16,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 // Conectar ao banco de dados e iniciar o servidor
-sequelize.sync({ alter: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(3000, () => {
     console.log("Server running on port 3000");
   });
@@ -29,3 +33,6 @@ app.get("/", (req, res) => {
 
 app.use("/api/produtos", produtoRouter);
 app.use("/api/usuarios", userRouter);
+
+//swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
