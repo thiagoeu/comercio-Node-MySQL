@@ -6,7 +6,7 @@ import {
 
 const userRouter = Router();
 
-userRouter.post("/cadastro", createUserController);
+userRouter.post("/register", createUserController);
 userRouter.post("/login", loginUserController);
 
 export default userRouter;
