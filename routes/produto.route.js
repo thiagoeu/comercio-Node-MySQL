@@ -14,7 +14,19 @@ produtoRouter.post(
         required: true,
         content: {
           "application/json": {
-            schema: { $ref: "#/components/schemas/Produto" }
+            schema: { $ref: "#/components/schemas/Produto" },
+             examples: {
+              default: {
+                value: {
+                  name: "PlayStation 5",
+                  price: 4500,
+                  description: "Console de última geração",
+                  category: "eletrônicos",
+                  product_stock: 50,
+                  product_code: `PS5-${Date.now()}`
+                }
+              }
+            }
           }
         }
       }

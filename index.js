@@ -35,4 +35,4 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api", produtoRouter);
-app.use("/api/usuarios", userRouter);
+app.use("/api", userRouter);
