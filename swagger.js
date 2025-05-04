@@ -1,7 +1,7 @@
 import swaggerAutogen from "swagger-autogen";
 
 const outputFile = "./swagger_output.json";
-const endpointsFiles = ["./routes/produto.route.js"];
+const endpointsFiles = ["./routes/produto.route.js", "./routes/user.route.js"];
 
 const doc = {
   info: {
@@ -11,7 +11,6 @@ const doc = {
       "Esta API foi desenvolvida para gestão de produtos e usuarios de uma plataforma de e-commerce.",
   },
   host: "localhost:3000",
-  basePath: "/api",
   schemes: ["http"],
   consumes: ["application/json"],
   produces: ["application/json"],
@@ -20,14 +19,22 @@ const doc = {
       name: "Produto",
       description: "Endpoints",
     },
+    {
+      name: "Usuario",
+      description: "Endpoints",
+    },
   ],
   components: {
     schemas: {
       Produto: {
         type: "object",
         properties: {
-          nome: { type: "string" },
-          preco: { type: "number" },
+          name: { type: "string" },
+          price: { type: "number" },
+          description: { type: "string" },
+          category: { type: "string" },
+          product_stock: { type: "number" },
+          product_code: { type: "string" },
         },
       },
     },
